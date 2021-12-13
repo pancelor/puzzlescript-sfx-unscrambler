@@ -1,3 +1,9 @@
+//
+//
+// https://github.com/increpare/PuzzleScript/tree/master/src/js/sfxr.js
+//
+//
+
 var SOUND_VOL = 0.25;
 var SAMPLE_RATE = 5512;
 var BIT_DEPTH = 8;
@@ -212,69 +218,69 @@ explosion = function() {
 birdSound = function() {
   var result=Params();
 
-if (frnd(10) < 1) {
+  if (frnd(10) < 1) {
     result.wave_type = Math.floor(frnd(SHAPES.length));
     if (result.wave_type === 3) {
       result.wave_type = SQUARE;
     }
-result.p_env_attack = 0.4304400932967592 + frnd(0.2) - 0.1;
-result.p_env_sustain = 0.15739346034252394 + frnd(0.2) - 0.1;
-result.p_env_punch = 0.004488201744871758 + frnd(0.2) - 0.1;
-result.p_env_decay = 0.07478075528212291 + frnd(0.2) - 0.1;
-result.p_base_freq = 0.9865265720147687 + frnd(0.2) - 0.1;
-result.p_freq_limit = 0 + frnd(0.2) - 0.1;
-result.p_freq_ramp = -0.2995018224359539 + frnd(0.2) - 0.1;
-if (frnd(1.0) < 0.5) {
-  result.p_freq_ramp = 0.1 + frnd(0.15);
-}
-result.p_freq_dramp = 0.004598608156964473 + frnd(0.1) - 0.05;
-result.p_vib_strength = -0.2202799497929496 + frnd(0.2) - 0.1;
-result.p_vib_speed = 0.8084998703158364 + frnd(0.2) - 0.1;
-result.p_arp_mod = 0;//-0.46410459213693644+frnd(0.2)-0.1;
-result.p_arp_speed = 0;//-0.10955361249587248+frnd(0.2)-0.1;
-result.p_duty = -0.9031808754347107 + frnd(0.2) - 0.1;
-result.p_duty_ramp = -0.8128699999808343 + frnd(0.2) - 0.1;
-result.p_repeat_speed = 0.6014860189319991 + frnd(0.2) - 0.1;
-result.p_pha_offset = -0.9424902314367765 + frnd(0.2) - 0.1;
-result.p_pha_ramp = -0.1055482222272056 + frnd(0.2) - 0.1;
-result.p_lpf_freq = 0.9989765717851521 + frnd(0.2) - 0.1;
-result.p_lpf_ramp = -0.25051720626043017 + frnd(0.2) - 0.1;
-result.p_lpf_resonance = 0.32777871505494693 + frnd(0.2) - 0.1;
-result.p_hpf_freq = 0.0023548750981756753 + frnd(0.2) - 0.1;
-result.p_hpf_ramp = -0.002375673204842568 + frnd(0.2) - 0.1;
-return result;
-}
+    result.p_env_attack = 0.4304400932967592 + frnd(0.2) - 0.1;
+    result.p_env_sustain = 0.15739346034252394 + frnd(0.2) - 0.1;
+    result.p_env_punch = 0.004488201744871758 + frnd(0.2) - 0.1;
+    result.p_env_decay = 0.07478075528212291 + frnd(0.2) - 0.1;
+    result.p_base_freq = 0.9865265720147687 + frnd(0.2) - 0.1;
+    result.p_freq_limit = 0 + frnd(0.2) - 0.1;
+    result.p_freq_ramp = -0.2995018224359539 + frnd(0.2) - 0.1;
+    if (frnd(1.0) < 0.5) {
+      result.p_freq_ramp = 0.1 + frnd(0.15);
+    }
+    result.p_freq_dramp = 0.004598608156964473 + frnd(0.1) - 0.05;
+    result.p_vib_strength = -0.2202799497929496 + frnd(0.2) - 0.1;
+    result.p_vib_speed = 0.8084998703158364 + frnd(0.2) - 0.1;
+    result.p_arp_mod = 0;//-0.46410459213693644+frnd(0.2)-0.1;
+    result.p_arp_speed = 0;//-0.10955361249587248+frnd(0.2)-0.1;
+    result.p_duty = -0.9031808754347107 + frnd(0.2) - 0.1;
+    result.p_duty_ramp = -0.8128699999808343 + frnd(0.2) - 0.1;
+    result.p_repeat_speed = 0.6014860189319991 + frnd(0.2) - 0.1;
+    result.p_pha_offset = -0.9424902314367765 + frnd(0.2) - 0.1;
+    result.p_pha_ramp = -0.1055482222272056 + frnd(0.2) - 0.1;
+    result.p_lpf_freq = 0.9989765717851521 + frnd(0.2) - 0.1;
+    result.p_lpf_ramp = -0.25051720626043017 + frnd(0.2) - 0.1;
+    result.p_lpf_resonance = 0.32777871505494693 + frnd(0.2) - 0.1;
+    result.p_hpf_freq = 0.0023548750981756753 + frnd(0.2) - 0.1;
+    result.p_hpf_ramp = -0.002375673204842568 + frnd(0.2) - 0.1;
+    return result;
+  }
 
-if (frnd(10) < 1) {
+  if (frnd(10) < 1) {
     result.wave_type = Math.floor(frnd(SHAPES.length));
     if (result.wave_type === 3) {
       result.wave_type = SQUARE;
     }
-result.p_env_attack = 0.5277795946672003 + frnd(0.2) - 0.1;
-result.p_env_sustain = 0.18243733568468432 + frnd(0.2) - 0.1;
-result.p_env_punch = -0.020159754546840117 + frnd(0.2) - 0.1;
-result.p_env_decay = 0.1561353422051903 + frnd(0.2) - 0.1;
-result.p_base_freq = 0.9028855606533718 + frnd(0.2) - 0.1;
-result.p_freq_limit = -0.008842787837148716;
-result.p_freq_ramp = -0.1;
-result.p_freq_dramp = -0.012891241489551925;
-result.p_vib_strength = -0.17923136138403065 + frnd(0.2) - 0.1;
-result.p_vib_speed = 0.908263385610142 + frnd(0.2) - 0.1;
-result.p_arp_mod = 0.41690153355414894 + frnd(0.2) - 0.1;
-result.p_arp_speed = 0.0010766233195860703 + frnd(0.2) - 0.1;
-result.p_duty = -0.8735363011184684 + frnd(0.2) - 0.1;
-result.p_duty_ramp = -0.7397985366747507 + frnd(0.2) - 0.1;
-result.p_repeat_speed = 0.0591789344172107 + frnd(0.2) - 0.1;
-result.p_pha_offset = -0.9961184222777699 + frnd(0.2) - 0.1;
-result.p_pha_ramp = -0.08234769395850523 + frnd(0.2) - 0.1;
-result.p_lpf_freq = 0.9412475115697335 + frnd(0.2) - 0.1;
-result.p_lpf_ramp = -0.18261358925834958 + frnd(0.2) - 0.1;
-result.p_lpf_resonance = 0.24541438107389477 + frnd(0.2) - 0.1;
-result.p_hpf_freq = -0.01831940280978611 + frnd(0.2) - 0.1;
-result.p_hpf_ramp = -0.03857383633171346 + frnd(0.2) - 0.1;
-return result;
+    result.p_env_attack = 0.5277795946672003 + frnd(0.2) - 0.1;
+    result.p_env_sustain = 0.18243733568468432 + frnd(0.2) - 0.1;
+    result.p_env_punch = -0.020159754546840117 + frnd(0.2) - 0.1;
+    result.p_env_decay = 0.1561353422051903 + frnd(0.2) - 0.1;
+    result.p_base_freq = 0.9028855606533718 + frnd(0.2) - 0.1;
+    result.p_freq_limit = -0.008842787837148716;
+    result.p_freq_ramp = -0.1;
+    result.p_freq_dramp = -0.012891241489551925;
+    result.p_vib_strength = -0.17923136138403065 + frnd(0.2) - 0.1;
+    result.p_vib_speed = 0.908263385610142 + frnd(0.2) - 0.1;
+    result.p_arp_mod = 0.41690153355414894 + frnd(0.2) - 0.1;
+    result.p_arp_speed = 0.0010766233195860703 + frnd(0.2) - 0.1;
+    result.p_duty = -0.8735363011184684 + frnd(0.2) - 0.1;
+    result.p_duty_ramp = -0.7397985366747507 + frnd(0.2) - 0.1;
+    result.p_repeat_speed = 0.0591789344172107 + frnd(0.2) - 0.1;
+    result.p_pha_offset = -0.9961184222777699 + frnd(0.2) - 0.1;
+    result.p_pha_ramp = -0.08234769395850523 + frnd(0.2) - 0.1;
+    result.p_lpf_freq = 0.9412475115697335 + frnd(0.2) - 0.1;
+    result.p_lpf_ramp = -0.18261358925834958 + frnd(0.2) - 0.1;
+    result.p_lpf_resonance = 0.24541438107389477 + frnd(0.2) - 0.1;
+    result.p_hpf_freq = -0.01831940280978611 + frnd(0.2) - 0.1;
+    result.p_hpf_ramp = -0.03857383633171346 + frnd(0.2) - 0.1;
+    return result;
 
-}
+  }
   if (frnd(10) < 1) {
 //result.wave_type = 4;
     result.wave_type = Math.floor(frnd(SHAPES.length));
@@ -282,30 +288,30 @@ return result;
     if (result.wave_type === 3) {
       result.wave_type = SQUARE;
     }
-result.p_env_attack = 0.4304400932967592 + frnd(0.2) - 0.1;
-result.p_env_sustain = 0.15739346034252394 + frnd(0.2) - 0.1;
-result.p_env_punch = 0.004488201744871758 + frnd(0.2) - 0.1;
-result.p_env_decay = 0.07478075528212291 + frnd(0.2) - 0.1;
-result.p_base_freq = 0.9865265720147687 + frnd(0.2) - 0.1;
-result.p_freq_limit = 0 + frnd(0.2) - 0.1;
-result.p_freq_ramp = -0.2995018224359539 + frnd(0.2) - 0.1;
-result.p_freq_dramp = 0.004598608156964473 + frnd(0.2) - 0.1;
-result.p_vib_strength = -0.2202799497929496 + frnd(0.2) - 0.1;
-result.p_vib_speed = 0.8084998703158364 + frnd(0.2) - 0.1;
-result.p_arp_mod = -0.46410459213693644 + frnd(0.2) - 0.1;
-result.p_arp_speed = -0.10955361249587248 + frnd(0.2) - 0.1;
-result.p_duty = -0.9031808754347107 + frnd(0.2) - 0.1;
-result.p_duty_ramp = -0.8128699999808343 + frnd(0.2) - 0.1;
-result.p_repeat_speed = 0.7014860189319991 + frnd(0.2) - 0.1;
-result.p_pha_offset = -0.9424902314367765 + frnd(0.2) - 0.1;
-result.p_pha_ramp = -0.1055482222272056 + frnd(0.2) - 0.1;
-result.p_lpf_freq = 0.9989765717851521 + frnd(0.2) - 0.1;
-result.p_lpf_ramp = -0.25051720626043017 + frnd(0.2) - 0.1;
-result.p_lpf_resonance = 0.32777871505494693 + frnd(0.2) - 0.1;
-result.p_hpf_freq = 0.0023548750981756753 + frnd(0.2) - 0.1;
-result.p_hpf_ramp = -0.002375673204842568 + frnd(0.2) - 0.1;
-return result;
-}
+    result.p_env_attack = 0.4304400932967592 + frnd(0.2) - 0.1;
+    result.p_env_sustain = 0.15739346034252394 + frnd(0.2) - 0.1;
+    result.p_env_punch = 0.004488201744871758 + frnd(0.2) - 0.1;
+    result.p_env_decay = 0.07478075528212291 + frnd(0.2) - 0.1;
+    result.p_base_freq = 0.9865265720147687 + frnd(0.2) - 0.1;
+    result.p_freq_limit = 0 + frnd(0.2) - 0.1;
+    result.p_freq_ramp = -0.2995018224359539 + frnd(0.2) - 0.1;
+    result.p_freq_dramp = 0.004598608156964473 + frnd(0.2) - 0.1;
+    result.p_vib_strength = -0.2202799497929496 + frnd(0.2) - 0.1;
+    result.p_vib_speed = 0.8084998703158364 + frnd(0.2) - 0.1;
+    result.p_arp_mod = -0.46410459213693644 + frnd(0.2) - 0.1;
+    result.p_arp_speed = -0.10955361249587248 + frnd(0.2) - 0.1;
+    result.p_duty = -0.9031808754347107 + frnd(0.2) - 0.1;
+    result.p_duty_ramp = -0.8128699999808343 + frnd(0.2) - 0.1;
+    result.p_repeat_speed = 0.7014860189319991 + frnd(0.2) - 0.1;
+    result.p_pha_offset = -0.9424902314367765 + frnd(0.2) - 0.1;
+    result.p_pha_ramp = -0.1055482222272056 + frnd(0.2) - 0.1;
+    result.p_lpf_freq = 0.9989765717851521 + frnd(0.2) - 0.1;
+    result.p_lpf_ramp = -0.25051720626043017 + frnd(0.2) - 0.1;
+    result.p_lpf_resonance = 0.32777871505494693 + frnd(0.2) - 0.1;
+    result.p_hpf_freq = 0.0023548750981756753 + frnd(0.2) - 0.1;
+    result.p_hpf_ramp = -0.002375673204842568 + frnd(0.2) - 0.1;
+    return result;
+  }
   if (frnd(5) > 1) {
     result.wave_type = Math.floor(frnd(SHAPES.length));
 
@@ -559,29 +565,29 @@ random = function() {
 };
 
 var generators = [
-pickupCoin,
-laserShoot,
-explosion,
-powerUp,
-hitHurt,
-jump,
-blipSelect,
-pushSound,
-random,
-birdSound
+  pickupCoin,
+  laserShoot,
+  explosion,
+  powerUp,
+  hitHurt,
+  jump,
+  blipSelect,
+  pushSound,
+  random,
+  birdSound
 ];
 
 var generatorNames = [
-'pickupCoin',
-'laserShoot',
-'explosion',
-'powerUp',
-'hitHurt',
-'jump',
-'blipSelect',
-'pushSound',
-'random',
-'birdSound'
+  'pickupCoin',
+  'laserShoot',
+  'explosion',
+  'powerUp',
+  'hitHurt',
+  'jump',
+  'blipSelect',
+  'pushSound',
+  'random',
+  'birdSound'
 ];
 
 /*
@@ -608,7 +614,7 @@ SoundEffect.prototype.getBuffer = function() {
 
 
 //unlock bullshit
-function ULBS(){   
+function ULBS(){
   if (AUDIO_CONTEXT.state === 'suspended')
   {
       var unlock = function()
@@ -1037,7 +1043,7 @@ function showAudioButton(){
   var mb = document.getElementById("muteButton");
   var umb = document.getElementById("unMuteButton");
   if (mb){
-    mb.style.display="block"; 
+    mb.style.display="block";
     umb.style.display="none";
   }
 }
@@ -1052,22 +1058,321 @@ function toggleMute() {
 }
 
 function muteAudio() {
-  muted=1; 
+  muted=1;
   tryDeactivateYoutube();
   var mb = document.getElementById("muteButton");
   var umb = document.getElementById("unMuteButton");
   if (mb){
-    mb.style.display="none"; 
+    mb.style.display="none";
     umb.style.display="block";
   }
 }
 function unMuteAudio() {
-  muted=0; 
+  muted=0;
   tryActivateYoutube();
   var mb = document.getElementById("muteButton");
   var umb = document.getElementById("unMuteButton");
   if (mb){
-    mb.style.display="block"; 
+    mb.style.display="block";
     umb.style.display="none";
   }
+}
+
+
+
+//
+//
+// https://github.com/increpare/PuzzleScript/tree/master/src/js/soundbar.js
+//
+//
+
+
+
+var audio;
+
+
+function newSound(instrument) {
+  var seed = instrument + 100 * ((Math.random() * 1000000) | 1);
+  //document.getElementById('sounddat').value = seed;
+
+  var frame = parent.frames[4];
+  var code = document.getElementById('consoletextarea');
+  consolePrint(generatorNames[instrument] + ' : ' + '<span class="cm-SOUND" onclick="playSound(' + seed.toString() + ')">' + seed.toString() + '</span>',true);
+  var params = generateFromSeed(seed);
+  params.sound_vol = SOUND_VOL;
+  params.sample_rate = SAMPLE_RATE;
+  params.bit_depth = BIT_DEPTH;
+  var sound = SoundEffect.generate(params);
+  sound.play();
+}
+
+function buttonPress() {
+  var generatortype = 3;
+  var seed = document.getElementById('sounddat').value;
+  var params = generateFromSeed(seed);
+  params.sound_vol = SOUND_VOL;
+  params.sample_rate = SAMPLE_RATE;
+  params.bit_depth = BIT_DEPTH;
+  var sound = SoundEffect.generate(params);
+  sound.play();
+}
+
+//
+// my shims
+//
+
+function consolePrint(msg,_ignore) {
+  console.log(msg)
+}
+
+// function generateHTML() {
+//   var params=Params();
+//   for (let key in params) { //in
+//     let elem = document.createElement('input')
+//     elem.name=
+//     document.body.appendChild(textarea)
+//   }
+// }
+
+function read(id,raw=false) {
+  let val=document.getElementById(id).value
+  if (!raw) val=parseFloat(val)
+  return val
+}
+function write(id,val) {
+  document.getElementById(id).value=val
+}
+
+function generateFromSliders() {
+  var result=Params();
+  // Wave shape
+  result.wave_type = SHAPES.indexOf(read('wave_type',1));
+
+  // Envelope
+  result.p_env_attack = read("p_env_attack");
+  result.p_env_sustain = read("p_env_sustain");
+  result.p_env_punch = read("p_env_punch");
+  result.p_env_decay = read("p_env_decay");
+
+  // Tone
+  result.p_base_freq = read("p_base_freq");
+  result.p_freq_limit = read("p_freq_limit");
+  result.p_freq_ramp = read("p_freq_ramp");
+  result.p_freq_dramp = read("p_freq_dramp");
+  // Vibrato
+  result.p_vib_strength = read("p_vib_strength");
+  result.p_vib_speed = read("p_vib_speed");
+
+  // Tonal change
+  result.p_arp_mod = read("p_arp_mod");
+  result.p_arp_speed = read("p_arp_speed");
+
+  // Duty (wat's that?)
+  result.p_duty = read("p_duty");
+  result.p_duty_ramp = read("p_duty_ramp");
+
+  // Repeat
+  result.p_repeat_speed = read("p_repeat_speed");
+
+  // Phaser
+  result.p_pha_offset = read("p_pha_offset");
+  result.p_pha_ramp = read("p_pha_ramp");
+
+  // Low-pass filter
+  result.p_lpf_freq = read("p_lpf_freq");
+  result.p_lpf_ramp = read("p_lpf_ramp");
+  result.p_lpf_resonance = read("p_lpf_resonance");
+  // High-pass filter
+  result.p_hpf_freq = read("p_hpf_freq");
+  result.p_hpf_ramp = read("p_hpf_ramp");
+
+  return result;
+}
+
+function setSliders(params) {
+  // Wave shape
+  write('wave_type',SHAPES[params.wave_type]);
+
+  // Envelope
+  write("p_env_attack",params.p_env_attack);
+  write("p_env_sustain",params.p_env_sustain);
+  write("p_env_punch",params.p_env_punch);
+  write("p_env_decay",params.p_env_decay);
+
+  // Tone
+  write("p_base_freq",params.p_base_freq);
+  write("p_freq_limit",params.p_freq_limit);
+  write("p_freq_ramp",params.p_freq_ramp);
+  write("p_freq_dramp",params.p_freq_dramp);
+  // Vibrato
+  write("p_vib_strength",params.p_vib_strength);
+  write("p_vib_speed",params.p_vib_speed);
+
+  // Tonal change
+  write("p_arp_mod",params.p_arp_mod);
+  write("p_arp_speed",params.p_arp_speed);
+
+  // Duty (wat's that?)
+  write("p_duty",params.p_duty);
+  write("p_duty_ramp",params.p_duty_ramp);
+
+  // Repeat
+  write("p_repeat_speed",params.p_repeat_speed);
+
+  // Phaser
+  write("p_pha_offset",params.p_pha_offset);
+  write("p_pha_ramp",params.p_pha_ramp);
+
+  // Low-pass filter
+  write("p_lpf_freq",params.p_lpf_freq);
+  write("p_lpf_ramp",params.p_lpf_ramp);
+  write("p_lpf_resonance",params.p_lpf_resonance);
+  // High-pass filter
+  write("p_hpf_freq",params.p_hpf_freq);
+  write("p_hpf_ramp",params.p_hpf_ramp);
+}
+
+function playVanillaSfx() {
+  let seed = read("import");
+  var params = generateFromSeed(seed);
+  vanilla=params
+
+  params.sound_vol = SOUND_VOL;
+  params.sample_rate = SAMPLE_RATE;
+  params.bit_depth = BIT_DEPTH;
+  var sound = SoundEffect.generate(params);
+  sound.play();
+}
+
+function importSfxCode() {
+  let sfxId = read("import");
+  var params = generateFromSeed(sfxId);
+  setSliders(params)
+  playSliders()
+}
+
+function playSliders() {
+  var params = generateFromSliders();
+  choc=params
+
+  params.sound_vol = SOUND_VOL;
+  params.sample_rate = SAMPLE_RATE;
+  params.bit_depth = BIT_DEPTH;
+  var sound = SoundEffect.generate(params);
+  sound.play();
+}
+
+function playParams(base,override) {
+  let params=Object.assign({},base,override)
+  params.sound_vol = SOUND_VOL;
+  params.sample_rate = SAMPLE_RATE;
+  params.bit_depth = BIT_DEPTH;
+  var sound = SoundEffect.generate(params);
+  sound.play();
+}
+
+let autoupdaters=document.getElementsByClassName("autoupdate")
+for (let i=0; i<autoupdaters.length; i++) {
+  let elem=autoupdaters[i]
+  elem.addEventListener("input",playSliders)
+}
+
+// 95729908
+
+let diff_keys=[
+  "p_arp_mod",
+  "p_arp_speed",
+  "p_base_freq",
+  "p_duty",
+  "p_duty_ramp",
+  "p_env_attack",
+  "p_env_decay",
+  "p_env_punch",
+  "p_env_sustain",
+  "p_freq_dramp",
+  "p_freq_limit",
+  "p_freq_ramp",
+  "p_hpf_freq",
+  "p_hpf_ramp",
+  "p_lpf_freq",
+  "p_lpf_ramp",
+  "p_lpf_resonance",
+  "p_pha_offset",
+  "p_pha_ramp",
+  "p_repeat_speed",
+  "p_vib_speed",
+  "p_vib_strength",
+]
+function diff(pa,pb) {
+  let result=0.0;
+  for (let key of diff_keys) {
+    result+=Math.pow(pa[key]-pb[key],2);
+  }
+  return result;
+}
+function search(params, n=1000000) {
+  let bestSeed=0
+  let bestScore=1000000
+  for (let i=0; i<n; i++) {
+    if ((i&0xf_ffff)==0) console.log("progress",i,(i/n).toFixed(2))
+    let seed=(Math.random() * 100000000)|1
+    let pfound = generateFromSeed(seed);
+    let score = diff(params,pfound)
+    // console.log(seed,score);
+    if (score < bestScore) {
+      bestSeed=seed
+      bestScore=score
+      console.log("new best score:",seed,bestScore);
+    }
+  }
+  console.log(bestSeed)
+}
+
+function logCompare(pa,pb) {
+  for (let key in pa) { //in
+    console.log(key,"\n\t",pa[key].toFixed(4),pb[key].toFixed(4));
+  }
+}
+function probeBounds(n=100000) {
+  let maxs={}
+  let mins={}
+  for (let i=0; i<n; i++) {
+    let seed=(Math.random() * 100000000)|1
+    let params = generateFromSeed(seed);
+    for (let key in params) { //in
+      if (maxs[key]===undefined || params[key]>maxs[key]) maxs[key]=params[key]
+      if (mins[key]===undefined || params[key]<mins[key]) mins[key]=params[key]
+    }
+  }
+
+  logCompare(mins,maxs)
+  /*
+  wave_type        0.0000 5.0000
+  p_env_attack    -0.0956 0.6276
+  p_env_sustain    0.0001 0.5987
+  p_env_punch     -0.1200 0.3432
+  p_env_decay     -0.0251 0.5000
+  p_base_freq      0.1000 1.4260
+  p_freq_limit    -0.1000 0.7947
+  p_freq_ramp     -0.6500 0.5000
+  p_freq_dramp    -0.0953 0.4170
+  p_vib_strength  -0.3203 0.6997
+  p_vib_speed     -0.2364 1.0081
+  p_arp_mod       -0.7998 0.9000
+  p_arp_speed     -0.4130 1.0000
+  p_duty          -1.0032 0.9994
+  p_duty_ramp     -0.9968 0.9924
+  p_repeat_speed  -0.9094 0.8012
+  p_pha_offset    -1.0959 0.5999
+  p_pha_ramp      -0.3000 0.0997
+  p_lpf_freq       0.0001 1.0989
+  p_lpf_ramp      -0.9963 0.9968
+  p_lpf_resonance -0.9972 0.9993
+  p_hpf_freq      -0.1182 0.9993
+  p_hpf_ramp      -0.9998 0.9997
+  sound_vol        0.5000 0.5000
+  sample_rate      44100.0000 44100.0000
+  bit_depth        8.0000 8.0000
+  seed             881.0000 99999969. 0000
+  */
 }

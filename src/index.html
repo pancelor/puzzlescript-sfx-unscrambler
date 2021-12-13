@@ -4,8 +4,234 @@
   <title></title>
 </head>
 <body>
-  hello
 
+<div style="display:flex; flex-direction: column;">
+  <div>
+    wave shape
+    <div>
+      <select name="wave shape" id="wave_type" class="autoupdate">
+        <option value="square">square</option>
+        <option value="sawtooth">sawtooth</option>
+        <option value="sine">sine</option>
+        <option value="noise">noise</option>
+        <option value="triangle">triangle</option>
+        <option value="breaker">breaker</option>
+      </select>
+      <label for="wave shape">wave shape</label>
+    </div>
+  </div>
+  <div>
+    envelope
+    <div>
+      <input name="attack time" type="range" step="0.0001" class="autoupdate"
+        id="p_env_attack"
+        value="0.0" min="-1" max="1">
+        <!-- value="0.0" min="-0.0956" max="0.6276"> -->
+        <!-- value="0.0" min="0" max="1"> -->
+      <label for="attack time">attack time</label>
+    </div>
+    <div>
+      <input name="sustain time" type="range" step="0.0001" class="autoupdate"
+        id="p_env_sustain"
+        value="0.3" min="0" max="1">
+        <!-- value="0.3" min=" 0.0001" max="0.5987"> -->
+        <!-- value="0.3" min="0" max="1"> -->
+      <label for="sustain time">sustain time</label>
+    </div>
+    <div>
+      <input name="sustain punch" type="range" step="0.0001" class="autoupdate"
+        id="p_env_punch"
+        value="0.0" min="-1" max="1">
+        <!-- value="0.0" min="-0.1200" max="0.3432"> -->
+        <!-- value="0.0" min="0" max="1"> -->
+      <label for="sustain punch">sustain punch</label>
+    </div>
+    <div>
+      <input name="decay time" type="range" step="0.0001" class="autoupdate"
+        id="p_env_decay"
+        value="0.4" min="-1" max="1">
+        <!-- value="0.4" min="-0.0251" max="0.5000"> -->
+        <!-- value="0.4" min="0" max="1"> -->
+      <label for="decay time">decay time</label>
+    </div>
+  </div>
+  <div>
+    tone
+    <div>
+      <input name="start frequency" type="range" step="0.0001" class="autoupdate"
+        id="p_base_freq"
+        value="0.3" min="0" max="2">
+        <!-- value="0.3" min=" 0.1000" max="1.4260"> -->
+        <!-- value="0.3" min="0" max="1"> -->
+      <label for="start frequency">start frequency</label>
+    </div>
+    <div>
+      <input name="min frequency cutoff" type="range" step="0.0001" class="autoupdate"
+        id="p_freq_limit"
+        value="0.0" min="-1" max="1">
+        <!-- value="0.0" min="-0.1000" max="0.7947"> -->
+        <!-- value="0.0" min="0" max="1"> -->
+      <label for="min frequency cutoff">min frequency cutoff</label>
+    </div>
+    <div>
+      <input name="slide" type="range" step="0.0001" class="autoupdate"
+        id="p_freq_ramp"
+        value="0.0" min="-1" max="1">
+        <!-- value="0.0" min="-0.6500" max="0.5000"> -->
+        <!-- value="0.0" min="-1" max="1"> -->
+      <label for="slide">slide</label>
+    </div>
+    <div>
+      <input name="delta slide" type="range" step="0.0001" class="autoupdate"
+        id="p_freq_dramp"
+        value="0.0" min="-1" max="1">
+        <!-- value="0.0" min="-0.0953" max="0.4170"> -->
+        <!-- value="0.0" min="-1" max="1"> -->
+      <label for="delta slide">delta slide</label>
+    </div>
+  </div>
+  <div>
+    vibrato
+    <div>
+      <input name="vibrato depth" type="range" step="0.0001" class="autoupdate"
+        id="p_vib_strength"
+        value="0.0" min="-1" max="1">
+        <!-- value="0.0" min="-0.3203" max="0.6997"> -->
+        <!-- value="0.0" min="0" max="1"> -->
+      <label for="vibrato depth">vibrato depth</label>
+    </div>
+    <div>
+      <input name="vibrato speed" type="range" step="0.0001" class="autoupdate"
+        id="p_vib_speed"
+        value="0.0" min="-1" max="1">
+        <!-- value="0.0" min="-0.2364" max="1.0081"> -->
+        <!-- value="0.0" min="0" max="1"> -->
+      <label for="vibrato speed">vibrato speed</label>
+    </div>
+  </div>
+  <div>
+    tonal change
+    <div>
+      <input name="change amount" type="range" step="0.0001" class="autoupdate"
+        id="p_arp_mod"
+        value="0.0" min="-1" max="1">
+        <!-- value="0.0" min="-0.7998" max="0.9000"> -->
+        <!-- value="0.0" min="-1" max="1"> -->
+      <label for="change amount">change amount</label>
+    </div>
+    <div>
+      <input name="change speed" type="range" step="0.0001" class="autoupdate"
+        id="p_arp_speed"
+        value="0.0" min="-1" max="1">
+        <!-- value="0.0" min="-0.4130" max="1.0000"> -->
+        <!-- value="0.0" min="0" max="1"> -->
+      <label for="change speed">change speed</label>
+    </div>
+  </div>
+  <div>
+    duty
+    <div>
+      <input name="square duty" type="range" step="0.0001" class="autoupdate"
+        id="p_duty"
+        value="0.0" min="-1" max="1">
+        <!-- value="0.0" min="-1.0032" max="0.9994"> -->
+        <!-- value="0.0" min="0" max="1"> -->
+      <label for="square duty">square duty</label>
+    </div>
+    <div>
+      <input name="duty sweep" type="range" step="0.0001" class="autoupdate"
+        id="p_duty_ramp"
+        value="0.0" min="-1" max="1">
+        <!-- value="0.0" min="-0.9968" max="0.9924"> -->
+        <!-- value="0.0" min="-1" max="1"> -->
+      <label for="duty sweep">duty sweep</label>
+    </div>
+  </div>
+  <div>
+    repeat
+    <div>
+      <input name="repeat speed" type="range" step="0.0001" class="autoupdate"
+        id="p_repeat_speed"
+        value="0.0" min="-1" max="1">
+        <!-- value="0.0" min="-0.9094" max="0.8012"> -->
+        <!-- value="0.0" min="0" max="1"> -->
+      <label for="repeat speed">repeat speed</label>
+    </div>
+  </div>
+  <div>
+    phaser
+    <div>
+      <input name="phaser offset" type="range" step="0.0001" class="autoupdate"
+        id="p_pha_offset"
+        value="0.0" min="-1" max="1">
+        <!-- value="0.0" min="-1.0959" max="0.5999"> -->
+        <!-- value="0.0" min="-1" max="1"> -->
+      <label for="phaser offset">phaser offset</label>
+    </div>
+    <div>
+      <input name="phaser sweep" type="range" step="0.0001" class="autoupdate"
+        id="p_pha_ramp"
+        value="0.0" min="-1" max="1">
+        <!-- value="0.0" min="-0.3000" max="0.0997"> -->
+        <!-- value="0.0" min="-1" max="1"> -->
+      <label for="phaser sweep">phaser sweep</label>
+    </div>
+  </div>
+  <div>
+    low-pass filter
+    <div>
+      <input name="lpf cuttoff" type="range" step="0.0001" class="autoupdate"
+        id="p_lpf_freq"
+        value="1.0" min="0" max="1">
+        <!-- value="1.0" min=" 0.0001" max="1.0989"> -->
+        <!-- value="1.0" min="0" max="1"> -->
+      <label for="lpf cuttoff">lpf cuttoff</label>
+    </div>
+    <div>
+      <input name="lpf cutoff sweep" type="range" step="0.0001" class="autoupdate"
+        id="p_lpf_ramp"
+        value="0.0" min="-1" max="1">
+        <!-- value="0.0" min="-0.9963" max="0.9968"> -->
+        <!-- value="0.0" min="-1" max="1"> -->
+      <label for="lpf cutoff sweep">lpf cutoff sweep</label>
+    </div>
+    <div>
+      <input name="lpf resonance" type="range" step="0.0001" class="autoupdate"
+        id="p_lpf_resonance"
+        value="0.0" min="-1" max="1">
+        <!-- value="0.0" min="-0.9972" max="0.9993"> -->
+        <!-- value="0.0" min="0" max="1"> -->
+      <label for="lpf resonance">lpf resonance</label>
+    </div>
+  </div>
+  <div>
+    high-pass filter
+    <div>
+      <input name="hpf cuttoff" type="range" step="0.0001" class="autoupdate"
+        id="p_hpf_freq"
+        value="0.0" min="-1" max="1">
+        <!-- value="0.0" min="-0.1182" max="0.9993"> -->
+        <!-- value="0.0" min="0" max="1"> -->
+      <label for="hpf cuttoff">hpf cuttoff</label>
+    </div>
+    <div>
+      <input name="hpf cutoff sweep" type="range" step="0.0001" class="autoupdate"
+        id="p_hpf_ramp"
+        value="0.0" min="-1" max="1">
+        <!-- value="0.0" min="-0.9998" max="0.9997"> -->
+        <!-- value="0.0" min="-1" max="1"> -->
+      <label for="hpf cutoff sweep">hpf cutoff sweep</label>
+    </div>
+  </div>
+</div>
+
+<button onclick="playSliders()">play</button>
+
+<input type="text" name="import" id="import">
+<button onclick="importSfxCode()">import</button>
+<button onclick="playVanillaSfx()">pzplay</button>
+
+<script type="text/javascript" src="rng.js"></script>
 <script type="text/javascript" src="sfxr.js"></script>
 </body>
 </html>
