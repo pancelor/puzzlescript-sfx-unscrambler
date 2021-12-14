@@ -48,6 +48,7 @@ function RC4(seed) {
 }
 
 RC4.prototype._swap = function(i, j) {
+    // console.log("SWAP",i,j);
     var tmp = this.s[i];
     this.s[i] = this.s[j];
     this.s[j] = tmp;

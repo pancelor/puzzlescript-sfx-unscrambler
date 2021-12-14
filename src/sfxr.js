@@ -1294,34 +1294,34 @@ for (let i=0; i<autoupdaters.length; i++) {
 // 87450904 easy
 // 71799708 drone
 
-let diff_keys=[
-  "p_arp_mod",
-  "p_arp_speed",
-  "p_base_freq",
-  "p_duty",
-  "p_duty_ramp",
-  "p_env_attack",
-  "p_env_decay",
-  "p_env_punch",
-  "p_env_sustain",
-  "p_freq_dramp",
-  "p_freq_limit",
-  "p_freq_ramp",
-  "p_hpf_freq",
-  "p_hpf_ramp",
-  "p_lpf_freq",
-  "p_lpf_ramp",
-  "p_lpf_resonance",
-  "p_pha_offset",
-  "p_pha_ramp",
-  "p_repeat_speed",
-  "p_vib_speed",
-  "p_vib_strength",
-]
+let param_weights={
+  p_env_attack:    10,
+  p_env_sustain:   5,
+  p_env_punch:     5,
+  p_env_decay:     1,
+  p_base_freq:     5,
+  p_freq_limit:    20,
+  p_freq_ramp:     20,
+  p_freq_dramp:    10,
+  p_vib_strength:  10,
+  p_vib_speed:     10,
+  p_arp_mod:       10,
+  p_arp_speed:     5,
+  p_duty:          5,
+  p_duty_ramp:     20,
+  p_repeat_speed:  10,
+  p_pha_offset:    10,
+  p_pha_ramp:      10,
+  p_lpf_freq:      20,
+  p_lpf_ramp:      20,
+  p_lpf_resonance: 20,
+  p_hpf_freq:      20,
+  p_hpf_ramp:      20,
+}
 function diff(pa,pb) {
   let result=0.0;
-  for (let key of diff_keys) {
-    result+=Math.pow(pa[key]-pb[key],2);
+  for (let key in param_weights) { //in
+    result+=Math.pow(pa[key]-pb[key],2)*param_weights[key];
   }
   return result;
 }
@@ -1331,8 +1331,11 @@ function search() {
 
   let goal = generateFromSliders()
 
-  let bestSeed=0
-  let bestScore=1000
+  let k=20;
+  let kBest=[]
+  for (let i=0; i<k; i++) {
+    kBest.push({seed:0,score:1000000})
+  }
   // let n=10000;
   let n=1000000;
   for (let i=0; i<n; i++) {
@@ -1348,28 +1351,33 @@ function search() {
       let pfound = generateFromSeed(seed);
       let score = diff(goal,pfound)
       // console.log(seed,score);
-      if (score < bestScore) {
-        bestSeed=seed
-        bestScore=score
-        console.log("new best score:",seed,bestScore);
-        addResult(seed)
-      }
-      if ((i>1000 || score<0.1) && (score < 0.5)) {
-        // don't play too early when lots of results are coming in
-        addResult(seed)
-        playParams(pfound)
+      if (score < kBest[k-1].score) {
+        kBest[k-1]={seed,score}
+        kBest.sort((a, b)=>a.score-b.score);
+        console.log("found new top "+k+":",seed,score);
+        addResult(seed,seed)
+        if ((i>4000) && (score < 10)) {
+          // don't play too early when lots of results are coming in
+          playParams(pfound)
+        }
       }
     }
   }
-  console.log("best seed:",bestSeed)
+  addResult("top "+k+" seeds (worst -> best)")
+  for (let i=k-1; i>=0; i--) {
+    let {seed,score}=kBest[i]
+    addResult(seed+" (score "+score+")",seed)
+  }
 }
-function addResult(seed) {
+function addResult(text, seed) {
   let list=find("results")
   let item = document.createElement('li')
   let link = document.createElement('a')
-  link.href="#"
-  link.innerText=""+seed
-  link.onclick=function() { playVanillaSeed(seed) }
+  link.innerText=""+text
+  if (seed) {
+    link.href="#"
+    link.onclick=function() { playVanillaSeed(seed); return false; }
+  }
   list.appendChild(item)
   item.appendChild(link)
 }
@@ -1385,46 +1393,47 @@ function logCompare(pa,pb) {
     console.log(key,"\n\t",pa[key].toFixed(4),pb[key].toFixed(4));
   }
 }
-function probeBounds(n=100000) {
+function probeBounds() {
   let maxs={}
   let mins={}
+  let n=1000000;
   for (let i=0; i<n; i++) {
-    let seed=(Math.random() * 100000000)|1
-    let params = generateFromSeed(seed);
-    for (let key in params) { //in
-      if (maxs[key]===undefined || params[key]>maxs[key]) maxs[key]=params[key]
-      if (mins[key]===undefined || params[key]<mins[key]) mins[key]=params[key]
+    if ((i&0xffff)==0) {
+      console.log("progress:",Math.floor((i*100)/n),"%")
+    }
+    for (let j=0; j<10; j++) {
+      let seed=i*100+j;
+      let params = generateFromSeed(seed);
+      for (let key in params) { //in
+        if (maxs[key]===undefined || params[key]>maxs[key]) maxs[key]=params[key]
+        if (mins[key]===undefined || params[key]<mins[key]) mins[key]=params[key]
+      }
     }
   }
 
   logCompare(mins,maxs)
   /*
-  wave_type        0.0000 5.0000
-  p_env_attack    -0.0956 0.6276
-  p_env_sustain    0.0001 0.5987
-  p_env_punch     -0.1200 0.3432
-  p_env_decay     -0.0251 0.5000
-  p_base_freq      0.1000 1.4260
-  p_freq_limit    -0.1000 0.7947
-  p_freq_ramp     -0.6500 0.5000
-  p_freq_dramp    -0.0953 0.4170
-  p_vib_strength  -0.3203 0.6997
-  p_vib_speed     -0.2364 1.0081
-  p_arp_mod       -0.7998 0.9000
-  p_arp_speed     -0.4130 1.0000
-  p_duty          -1.0032 0.9994
-  p_duty_ramp     -0.9968 0.9924
-  p_repeat_speed  -0.9094 0.8012
-  p_pha_offset    -1.0959 0.5999
-  p_pha_ramp      -0.3000 0.0997
-  p_lpf_freq       0.0001 1.0989
-  p_lpf_ramp      -0.9963 0.9968
-  p_lpf_resonance -0.9972 0.9993
-  p_hpf_freq      -0.1182 0.9993
-  p_hpf_ramp      -0.9998 0.9997
-  sound_vol        0.5000 0.5000
-  sample_rate      44100.0000 44100.0000
-  bit_depth        8.0000 8.0000
-  seed             881.0000 99999969. 0000
+  p_env_attack    -1.0000 1.0000
+  p_env_sustain    0.0000 1.4989
+  p_env_punch     -0.1202 0.8000
+  p_env_decay     -1.0000 1.4968
+  p_base_freq     -0.4999 1.5000
+  p_freq_limit    -0.1000 0.7992
+  p_freq_ramp     -1.0000 1.0000
+  p_freq_dramp    -1.0000 1.0000
+  p_vib_strength  -1.0000 1.0000
+  p_vib_speed     -1.0000 1.0083
+  p_arp_mod       -1.0000 1.0000
+  p_arp_speed     -1.0000 1.0000
+  p_duty          -1.0032 1.0000
+  p_duty_ramp     -1.0000 1.0000
+  p_repeat_speed  -1.0000 1.0000
+  p_pha_offset    -1.0961 1.0000
+  p_pha_ramp      -1.0000 1.0000
+  p_lpf_freq       0.0000 1.0990
+  p_lpf_ramp      -1.0000 1.0000
+  p_lpf_resonance -1.0000 1.0000
+  p_hpf_freq      -0.1183 1.0000
+  p_hpf_ramp      -1.0000 1.0000
   */
 }
