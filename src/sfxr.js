@@ -1134,6 +1134,7 @@ function consolePrint(msg,_ignore) {
 //   }
 // }
 
+function find(id) { return document.getElementById(id); }
 function read(id,raw=false) {
   let val=document.getElementById(id).value
   if (!raw) val=parseFloat(val)
@@ -1234,6 +1235,9 @@ function setSliders(params) {
 
 function playVanillaSfx() {
   let seed = read("import");
+  playVanillaSeed(seed)
+}
+function playVanillaSeed(seed) {
   var params = generateFromSeed(seed);
   vanilla=params
 
@@ -1251,7 +1255,12 @@ function importSfxCode() {
   playSliders()
 }
 
+function stopAudio() {
+  // console.log("todo: stop audio");
+}
 function playSliders() {
+  stopAudio()
+
   var params = generateFromSliders();
   choc=params
 
@@ -1274,11 +1283,16 @@ function playParams(base,override) {
 let autoupdaters=document.getElementsByClassName("autoupdate")
 for (let i=0; i<autoupdaters.length; i++) {
   let elem=autoupdaters[i]
-  elem.addEventListener("input",playSliders)
+  elem.addEventListener("input",function() {
+    if (find("playOnChange").checked) {
+      playSliders()
+    }
+  })
 }
 
 // 95729908 wacky
 // 87450904 easy
+// 71799708 drone
 
 let diff_keys=[
   "p_arp_mod",
@@ -1312,7 +1326,7 @@ function diff(pa,pb) {
   return result;
 }
 function search() {
-  // let check=document.getElementById("searching")
+  // let check=find("searching")
   // check.checked=true
 
   let goal = generateFromSliders()
@@ -1323,7 +1337,7 @@ function search() {
   let n=1000000;
   for (let i=0; i<n; i++) {
     if ((i&0xffff)==0) {
-      console.log("progress:",Math.floor(i/n),"%")
+      console.log("progress:",Math.floor((i*100)/n),"%")
       // if (!check.checked) {
       //   console.log("break early");
       //   break
@@ -1338,14 +1352,32 @@ function search() {
         bestSeed=seed
         bestScore=score
         console.log("new best score:",seed,bestScore);
-        if (i>1000 || score<0.1) {
-          // don't play too early when lots of results are coming in
-          playParams(pfound)
-        }
+        addResult(seed)
+      }
+      if ((i>1000 || score<0.1) && (score < 0.5)) {
+        // don't play too early when lots of results are coming in
+        addResult(seed)
+        playParams(pfound)
       }
     }
   }
   console.log("best seed:",bestSeed)
+}
+function addResult(seed) {
+  let list=find("results")
+  let item = document.createElement('li')
+  let link = document.createElement('a')
+  link.href="#"
+  link.innerText=""+seed
+  link.onclick=function() { playVanillaSeed(seed) }
+  list.appendChild(item)
+  item.appendChild(link)
+}
+function clearResults() {
+  let list=find("results")
+  for (let item of list.children) {
+    list.removeChild(item)
+  }
 }
 
 function logCompare(pa,pb) {

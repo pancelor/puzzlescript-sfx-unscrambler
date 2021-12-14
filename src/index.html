@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<div style="display:flex; flex-direction: column;">
+<div style="display:flex; flex-direction: column; border: solid black 2px; border-radius: 8px; padding:8px;">
   <div>
     wave shape
     <div>
@@ -223,14 +223,19 @@
       <label for="hpf cutoff sweep">hpf cutoff sweep</label>
     </div>
   </div>
-  <button onclick="playSliders()">play</button>
+  <hr width="95%">
+  <span>
+    <button onclick="playSliders()">play</button>
+    <input type="checkbox" id="playOnChange" name="playOnChange" checked>
+    <label for="playOnChange">autoplay</label>
+  </span>
 </div>
 
 <div>
   import
   <input type="text" name="import" id="import">
   <button onclick="importSfxCode()">import</button>
-  <button onclick="playVanillaSfx()">pzplay</button>
+  <!-- <button onclick="playVanillaSfx()">pzplay</button> -->
 </div>
 
 <div>
@@ -238,6 +243,8 @@
   <button onclick="search()">search</button>
   <!-- <input type="checkbox" id="searching" name="searching" unchecked> -->
   <!-- <label for="searching">searching</label> -->
+  <ul id="results"></ul>
+  <button onclick="clearResults()">clear</button>
 </div>
 
 
