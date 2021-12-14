@@ -223,13 +223,23 @@
       <label for="hpf cutoff sweep">hpf cutoff sweep</label>
     </div>
   </div>
+  <button onclick="playSliders()">play</button>
 </div>
 
-<button onclick="playSliders()">play</button>
+<div>
+  import
+  <input type="text" name="import" id="import">
+  <button onclick="importSfxCode()">import</button>
+  <button onclick="playVanillaSfx()">pzplay</button>
+</div>
 
-<input type="text" name="import" id="import">
-<button onclick="importSfxCode()">import</button>
-<button onclick="playVanillaSfx()">pzplay</button>
+<div>
+  search
+  <button onclick="search()">search</button>
+  <!-- <input type="checkbox" id="searching" name="searching" unchecked> -->
+  <!-- <label for="searching">searching</label> -->
+</div>
+
 
 <script type="text/javascript" src="rng.js"></script>
 <script type="text/javascript" src="sfxr.js"></script>

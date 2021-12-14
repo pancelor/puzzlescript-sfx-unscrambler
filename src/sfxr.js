@@ -1277,7 +1277,8 @@ for (let i=0; i<autoupdaters.length; i++) {
   elem.addEventListener("input",playSliders)
 }
 
-// 95729908
+// 95729908 wacky
+// 87450904 easy
 
 let diff_keys=[
   "p_arp_mod",
@@ -1310,22 +1311,41 @@ function diff(pa,pb) {
   }
   return result;
 }
-function search(params, n=1000000) {
+function search() {
+  // let check=document.getElementById("searching")
+  // check.checked=true
+
+  let goal = generateFromSliders()
+
   let bestSeed=0
-  let bestScore=1000000
+  let bestScore=1000
+  // let n=10000;
+  let n=1000000;
   for (let i=0; i<n; i++) {
-    if ((i&0xf_ffff)==0) console.log("progress",i,(i/n).toFixed(2))
-    let seed=(Math.random() * 100000000)|1
-    let pfound = generateFromSeed(seed);
-    let score = diff(params,pfound)
-    // console.log(seed,score);
-    if (score < bestScore) {
-      bestSeed=seed
-      bestScore=score
-      console.log("new best score:",seed,bestScore);
+    if ((i&0xffff)==0) {
+      console.log("progress:",Math.floor(i/n),"%")
+      // if (!check.checked) {
+      //   console.log("break early");
+      //   break
+      // }
+    }
+    for (let j=0; j<10; j++) {
+      let seed=i*100+j;
+      let pfound = generateFromSeed(seed);
+      let score = diff(goal,pfound)
+      // console.log(seed,score);
+      if (score < bestScore) {
+        bestSeed=seed
+        bestScore=score
+        console.log("new best score:",seed,bestScore);
+        if (i>1000 || score<0.1) {
+          // don't play too early when lots of results are coming in
+          playParams(pfound)
+        }
+      }
     }
   }
-  console.log(bestSeed)
+  console.log("best seed:",bestSeed)
 }
 
 function logCompare(pa,pb) {
