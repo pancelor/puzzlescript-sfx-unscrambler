@@ -1233,7 +1233,7 @@ function setSliders(params) {
   write("p_hpf_ramp",params.p_hpf_ramp);
 }
 
-function playVanillaSfx() {
+function clickPlayVanillaSfx() {
   let seed = read("import");
   playVanillaSeed(seed)
 }
@@ -1248,17 +1248,17 @@ function playVanillaSeed(seed) {
   sound.play();
 }
 
-function importSfxCode() {
+function clickImportSfxCode() {
   let sfxId = read("import");
   var params = generateFromSeed(sfxId);
   setSliders(params)
-  playSliders()
+  clickPlaySliders()
 }
 
 function stopAudio() {
   // console.log("todo: stop audio");
 }
-function playSliders() {
+function clickPlaySliders() {
   stopAudio()
 
   var params = generateFromSliders();
@@ -1285,7 +1285,7 @@ for (let i=0; i<autoupdaters.length; i++) {
   let elem=autoupdaters[i]
   elem.addEventListener("input",function() {
     if (find("playOnChange").checked) {
-      playSliders()
+      clickPlaySliders()
     }
   })
 }
@@ -1321,52 +1321,94 @@ let param_weights={
 function diff(pa,pb) {
   let result=0.0;
   for (let key in param_weights) { //in
-    result+=Math.pow(pa[key]-pb[key],2)*param_weights[key];
+    let diff=pa[key]-pb[key]
+    result+=diff*diff*param_weights[key];
   }
   return result;
 }
-function search() {
-  // let check=find("searching")
-  // check.checked=true
-
-  let goal = generateFromSliders()
-
-  let k=20;
-  let kBest=[]
-  for (let i=0; i<k; i++) {
-    kBest.push({seed:0,score:1000000})
+let searchState;
+function clickSearch() {
+  if (searchState) {
+    return console.warn("search in-progress?");
   }
-  // let n=10000;
-  let n=1000000;
-  for (let i=0; i<n; i++) {
-    if ((i&0xffff)==0) {
-      console.log("progress:",Math.floor((i*100)/n),"%")
-      // if (!check.checked) {
-      //   console.log("break early");
-      //   break
-      // }
-    }
-    for (let j=0; j<10; j++) {
-      let seed=i*100+j;
-      let pfound = generateFromSeed(seed);
-      let score = diff(goal,pfound)
-      // console.log(seed,score);
-      if (score < kBest[k-1].score) {
-        kBest[k-1]={seed,score}
-        kBest.sort((a, b)=>a.score-b.score);
-        console.log("found new top "+k+":",seed,score);
-        addResult(seed,seed)
-        if ((i>4000) && (score < 10)) {
-          // don't play too early when lots of results are coming in
-          playParams(pfound)
+
+  let status=find("status");
+  status.innerText = "searching... (scroll down)";
+  let cancel=find("cancel");
+  cancel.style.display = "block";
+
+  searchState={
+    i:0, // current index
+    // n:10000,
+    n:1000000, // max index
+    k:20, // top-20
+    kBest:[], // top-20 data
+    goal:generateFromSliders(), // goal values for sliders
+    last_sfx_time:0, // last time a sfx played during the search
+  };
+  // prep kBest
+  for (let i=0; i<searchState.k; i++) {
+    searchState.kBest.push({seed:0,score:1000000});
+  }
+
+  // start search
+  requestAnimationFrame(searchDoWork);
+}
+function clickCancelSearch() {
+  searchState.cancel=true;
+}
+function searchDoWork() {
+  let t0 = +new Date(); // time in milliseconds
+  let status=find("status");
+  let showTop20;
+  if (searchState.cancel) {
+    status.innerText = "search cancelled";
+    showTop20=true;
+  } else {
+    // do work
+    while ((new Date())-t0 < 15) { // 15ms timeout
+      for (let j=0; j<10; j++) {
+        let seed=searchState.i*100+j;
+        let pfound = generateFromSeed(seed);
+        let score = diff(searchState.goal,pfound)
+        // console.log(seed,score);
+        if (score < searchState.kBest[searchState.k-1].score) {
+          searchState.kBest[searchState.k-1]={seed,score}
+          searchState.kBest.sort((a, b)=>a.score-b.score);
+          console.log("found new top "+searchState.k+":",seed,score);
+          addResult(seed,seed)
+          let now=+(new Date());
+          if (now-searchState.last_sfx_time>500) {
+            // don't play sounds too close together
+            searchState.last_sfx_time=now;
+            playParams(pfound);
+          }
         }
       }
+      searchState.i++;
+    }
+    status.innerText = "searching... (scroll down) "+Math.floor((searchState.i*100)/searchState.n) + "%";
+
+    if (searchState.i<searchState.n) {
+      // continue working
+      requestAnimationFrame(searchDoWork);
+    } else {
+      // clean up
+      status.innerText = "search complete! scroll to bottom for best results";
+      let cancel=find("cancel");
+      cancel.style.display = "none";
+      showTop20=true;
     }
   }
-  addResult("top "+k+" seeds (worst -> best)")
-  for (let i=k-1; i>=0; i--) {
-    let {seed,score}=kBest[i]
-    addResult(seed+" (score "+score+")",seed)
+
+  if (showTop20) {
+    addResult("top "+searchState.k+" seeds (worst -> best)");
+    for (let i=searchState.k-1; i>=0; i--) {
+      let {seed,score}=searchState.kBest[i];
+      addResult(seed+" (score "+score+")",seed);
+    }
+
+    searchState=null;
   }
 }
 function addResult(text, seed) {
@@ -1374,18 +1416,22 @@ function addResult(text, seed) {
   let item = document.createElement('li')
   let link = document.createElement('a')
   link.innerText=""+text
-  if (seed) {
+  if (seed!==undefined) {
     link.href="#"
     link.onclick=function() { playVanillaSeed(seed); return false; }
   }
   list.appendChild(item)
   item.appendChild(link)
 }
-function clearResults() {
+function clickClearResults() {
   let list=find("results")
-  for (let item of list.children) {
-    list.removeChild(item)
-  }
+  list.replaceChildren();
+  // for (let item of list.children) {
+  //   list.removeChild(item)
+  // }
+
+  let status=find("status");
+  status.innerText = "";
 }
 
 function logCompare(pa,pb) {

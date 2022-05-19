@@ -6,6 +6,7 @@
 <style type="text/css">
   body {
     background: #e7e9eb;
+    font-family: monospace;
   }
 
   #slider-div {
@@ -16,15 +17,29 @@
     padding:8px;
   }
 
+  #cancel {
+    display: none;
+  }
+
   .param-slider {
     /*width:100%; need a div around slider/label pair. or a large table maybe*/
   }
 </style>
 <body>
 
+<h1>PuzzleScript SFX Unscrambler</h1>
+<p>Please see the <a href="https://www.github.com/pancelor/puzzlescript-sfx-unscrambler">README</a></p>
+
+<div>
+  import
+  <input type="text" name="import" id="import">
+  <button onclick="clickImportSfxCode()">import</button>
+  <!-- <button onclick="clickPlayVanillaSfx()">pzplay</button> -->
+</div>
+
 <div id="slider-div">
   <div>
-    wave shape
+    <h2>wave shape</h2>
     <div>
       <select name="wave shape" id="wave_type" class="autoupdate">
         <option value="square">square</option>
@@ -38,7 +53,7 @@
     </div>
   </div>
   <div>
-    envelope
+    <h2>envelope</h2>
     <div>
       <input name="attack time" type="range" step="0.0001" class="param-slider autoupdate"
         id="p_env_attack"
@@ -69,7 +84,7 @@
     </div>
   </div>
   <div>
-    tone
+    <h2>tone</h2>
     <div>
       <input name="start frequency" type="range" step="0.0001" class="param-slider autoupdate"
         id="p_base_freq"
@@ -100,7 +115,7 @@
     </div>
   </div>
   <div>
-    vibrato
+    <h2>vibrato</h2>
     <div>
       <input name="vibrato depth" type="range" step="0.0001" class="param-slider autoupdate"
         id="p_vib_strength"
@@ -117,7 +132,7 @@
     </div>
   </div>
   <div>
-    tonal change
+    <h2>tonal change</h2>
     <div>
       <input name="change amount" type="range" step="0.0001" class="param-slider autoupdate"
         id="p_arp_mod"
@@ -134,7 +149,7 @@
     </div>
   </div>
   <div>
-    duty
+    <h2>duty</h2>
     <div>
       <input name="square duty" type="range" step="0.0001" class="param-slider autoupdate"
         id="p_duty"
@@ -151,7 +166,7 @@
     </div>
   </div>
   <div>
-    repeat
+    <h2>repeat</h2>
     <div>
       <input name="repeat speed" type="range" step="0.0001" class="param-slider autoupdate"
         id="p_repeat_speed"
@@ -161,7 +176,7 @@
     </div>
   </div>
   <div>
-    phaser
+    <h2>phaser</h2>
     <div>
       <input name="phaser offset" type="range" step="0.0001" class="param-slider autoupdate"
         id="p_pha_offset"
@@ -178,7 +193,7 @@
     </div>
   </div>
   <div>
-    low-pass filter
+    <h2>low-pass filter</h2>
     <div>
       <input name="lpf cuttoff" type="range" step="0.0001" class="param-slider autoupdate"
         id="p_lpf_freq"
@@ -202,7 +217,7 @@
     </div>
   </div>
   <div>
-    high-pass filter
+    <h2>high-pass filter</h2>
     <div>
       <input name="hpf cuttoff" type="range" step="0.0001" class="param-slider autoupdate"
         id="p_hpf_freq"
@@ -220,26 +235,19 @@
   </div>
   <hr width="95%">
   <span>
-    <button onclick="playSliders()">play</button>
+    <button onclick="clickPlaySliders()">play</button>
     <input type="checkbox" id="playOnChange" name="playOnChange" checked>
     <label for="playOnChange">autoplay</label>
   </span>
 </div>
 
 <div>
-  import
-  <input type="text" name="import" id="import">
-  <button onclick="importSfxCode()">import</button>
-  <!-- <button onclick="playVanillaSfx()">pzplay</button> -->
-</div>
-
-<div>
   search
-  <button onclick="search()">search</button>
-  <!-- <input type="checkbox" id="searching" name="searching" unchecked> -->
-  <!-- <label for="searching">searching</label> -->
+  <button onclick="clickSearch()">search</button>
+  <button id="cancel" onclick="clickCancelSearch()">cancel</button>
+  <p id="status"></ul>
   <ul id="results"></ul>
-  <button onclick="clearResults()">clear</button>
+  <button onclick="clickClearResults()">clear</button>
 </div>
 
 
