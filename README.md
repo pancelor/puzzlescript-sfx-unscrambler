@@ -6,10 +6,6 @@ But if you're really picky about the sounds... you can press "random" for hours.
 
 ![](./explanation.png)
 
-## Project Status
-
-This is pretty rough and not the easiest to use. I'm unlikely to do much more work on this, but pull requests (or people wanting to become maintainers?) are welcome.
-
 ## Usage guide
 
 Use the tool [here](https://pancelor.github.io/puzzlescript-sfx-unscrambler).
@@ -31,13 +27,15 @@ The weights were chosen with _some_ thought, but not too much thought; they coul
 
 ## todo
 
+This project is a bit rough around the edges. Pull requests (or people wanting to become maintainers?) are welcome.
+
+* [x] interruptable search somehow (...web workers? requestAnimationFrame?)
+* [ ] pause sfx when a new one plays
 * [ ] choose better default weights
 * [ ] let user set custom weights?
 * [ ] much wider sliders
 * [ ] show slider zones -- some area are very unlikely to get randomly selected by the puzzlescript algorithm.
   * could show the distribution of that slider's value across every seed
-* [x] interruptable search somehow (...web workers? requestAnimationFrame?)
 * [ ] many results, not just the best so far... maybe add anything better than the 50 best so far? anything below 1?
 * [ ] increase search space - maybe just 1 more digit. I don't see how this would get you new sounds (based on the code) but it certainly seems to...
 * [ ] db approach? 1000000 * 10 * 23 floats = ... 230MB of database? easy
-* [ ] pause sfx when a new one plays
