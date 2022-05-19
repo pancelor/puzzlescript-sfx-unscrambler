@@ -21,7 +21,7 @@ Use the tool [here](https://pancelor.github.io/puzzlescript-sfx-unscrambler).
 
 ## What exactly does "closest" mean?
 
-Each seed generates a set of sliders; these sliders are compared against your input sliders. The "distance" is defined as a weighted sum-of-squared-error; search for "function diff(" in [src/sfxr.js](./src/sfxr.js) for more information
+Each seed generates a set of sliders; these sliders are compared against your input sliders. The "distance" is defined as a weighted sum-of-squared-error; search for "function diff(" in [./docs/sfxr.js](./docs/sfxr.js) for more information
 
 The weights were chosen with _some_ thought, but not too much thought; they could use some work.
 
